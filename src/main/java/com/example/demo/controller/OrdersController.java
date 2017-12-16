@@ -1,0 +1,40 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.entity.Orders;
+import com.example.demo.request.DeleteRequest;
+import com.example.demo.service.OrdersService;
+
+@RestController
+@RequestMapping("/orders")
+@CrossOrigin
+public class OrdersController {
+
+	@Autowired
+	private OrdersService ordersService;
+	
+	@GetMapping
+	public List<Orders> orders(){
+		return ordersService.findAll();
+	}
+	
+	@PutMapping
+	public Orders save(@RequestBody Orders orders){
+		return ordersService.save(orders);
+	}
+	
+	@DeleteMapping
+	public boolean delete(@RequestBody DeleteRequest request){
+		return ordersService.delete(request.getId());
+	}
+}
