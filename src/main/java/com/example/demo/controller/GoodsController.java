@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class GoodsController {
 	}
 	
 	@PutMapping
-	public Goods save(@RequestBody Goods goods) {
+	public Goods save(@RequestBody Goods goods) throws IOException {
 		return goodsService.save(goods);
 	}
 	

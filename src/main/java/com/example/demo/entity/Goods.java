@@ -22,6 +22,8 @@ public class Goods {
 	private String name;
 	
 	private int  price;
+
+	private String photo;
 	
 	@ManyToOne
 	private Country country;
@@ -38,6 +40,25 @@ public class Goods {
 
 	public Goods() {
 		super();
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public Goods(String name, int price, String photo, Country country, List<Diller> diller, Category category, Orders orders) {
+		this.name = name;
+
+		this.price = price;
+		this.photo = photo;
+		this.country = country;
+		this.diller = diller;
+		this.category = category;
+		this.orders = orders;
 	}
 
 	public int getId() {
