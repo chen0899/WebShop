@@ -3,7 +3,9 @@ package com.example.demo.service.impl;
 import java.io.*;
 import java.util.List;
 
-import com.example.demo.com.example.demo.dto.Base64MultipartFile;
+import com.example.demo.dto.Base64MultipartFile;
+import com.example.demo.request.SearchingRequest;
+import com.example.demo.specification.SearchingGoods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,5 +75,12 @@ public class GoodsServiceImpl implements GoodsService{
 		goodsRepository.delete(id);
 		return true;
 	}
+
+	public List<Goods> find (SearchingRequest searchingRequest) {
+		SearchingGoods searchingGoods = new SearchingGoods(searchingRequest);
+		return goodsRepository.findAll(searchingGoods);
+
+	}
+
 
 }

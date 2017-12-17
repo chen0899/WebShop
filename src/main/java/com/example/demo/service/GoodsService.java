@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.example.demo.entity.Goods;
+import com.example.demo.request.SearchingRequest;
 
 public interface GoodsService {
 	
@@ -11,5 +12,6 @@ public interface GoodsService {
 	List<Goods> findAll();
 	Goods findOne(int id);
 	boolean delete(int id);
+	List<Goods> find(SearchingRequest searchingRequest);
 
 }
