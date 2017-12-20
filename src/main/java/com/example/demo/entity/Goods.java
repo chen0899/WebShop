@@ -23,7 +23,7 @@ public class Goods {
 	
 	private int  price;
 
-	private int size;
+	private String size;
 
 	private String aboutGoods;
 
@@ -38,6 +38,9 @@ public class Goods {
 	
 	@ManyToOne
 	private Category category;
+
+	@ManyToOne
+	private SubCategory subCategory;
 	
 	@ManyToOne
 	private Orders orders;
@@ -54,7 +57,7 @@ public class Goods {
 		this.photo = photo;
 	}
 
-	public Goods(String name, int price, String photo, Country country, List<Diller> diller, Category category, Orders orders, int size, String aboutGoods) {
+	public Goods(String name, int price, String photo, Country country, List<Diller> diller, Category category, Orders orders, String size, String aboutGoods, SubCategory subCategory) {
 		this.name = name;
 
 		this.price = price;
@@ -65,6 +68,7 @@ public class Goods {
 		this.orders = orders;
 		this.size = size;
 		this.aboutGoods = aboutGoods;
+		this.subCategory = subCategory;
 	}
 
 	public int getId() {
@@ -115,11 +119,11 @@ public class Goods {
 		this.category = category;
 	}
 
-	public int getSize() {
+	public String getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(String size) {
 		this.size = size;
 	}
 
@@ -129,6 +133,23 @@ public class Goods {
 
 	public void setAboutGoods(String aboutGoods) {
 		this.aboutGoods = aboutGoods;
+	}
+
+
+	public SubCategory getSubCategory() {
+		return subCategory;
+	}
+
+	public void setSubCategory(SubCategory subCategory) {
+		this.subCategory = subCategory;
+	}
+
+	public Orders getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
 	}
 
 	@Override
