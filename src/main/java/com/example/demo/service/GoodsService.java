@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.example.demo.entity.Goods;
+import com.example.demo.request.SearchingForSizeRequest;
 import com.example.demo.request.SearchingRequest;
 
 public interface GoodsService {

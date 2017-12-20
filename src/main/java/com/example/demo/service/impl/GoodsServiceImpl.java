@@ -1,9 +1,11 @@
 package com.example.demo.service.impl;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.dto.Base64MultipartFile;
+import com.example.demo.request.SearchingForSizeRequest;
 import com.example.demo.request.SearchingRequest;
 import com.example.demo.specification.SearchingGoods;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +83,5 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsRepository.findAll(searchingGoods);
 
 	}
-
 
 }

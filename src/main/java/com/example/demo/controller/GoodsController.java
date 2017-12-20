@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.example.demo.request.SearchingForSizeRequest;
 import com.example.demo.request.SearchingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,9 @@ public class GoodsController {
 	public List<Goods> findGoods(@RequestBody SearchingRequest searchingRequest){
 		return goodsService.find(searchingRequest);
 	}
+
+
+
 
 	@DeleteMapping
 	public boolean delete(@RequestBody DeleteRequest request){

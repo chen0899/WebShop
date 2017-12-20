@@ -23,6 +23,10 @@ public class Goods {
 	
 	private int  price;
 
+	private int size;
+
+	private String aboutGoods;
+
 	private String photo;
 	
 	@ManyToOne
@@ -50,7 +54,7 @@ public class Goods {
 		this.photo = photo;
 	}
 
-	public Goods(String name, int price, String photo, Country country, List<Diller> diller, Category category, Orders orders) {
+	public Goods(String name, int price, String photo, Country country, List<Diller> diller, Category category, Orders orders, int size, String aboutGoods) {
 		this.name = name;
 
 		this.price = price;
@@ -59,6 +63,8 @@ public class Goods {
 		this.diller = diller;
 		this.category = category;
 		this.orders = orders;
+		this.size = size;
+		this.aboutGoods = aboutGoods;
 	}
 
 	public int getId() {
@@ -107,6 +113,22 @@ public class Goods {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public String getAboutGoods() {
+		return aboutGoods;
+	}
+
+	public void setAboutGoods(String aboutGoods) {
+		this.aboutGoods = aboutGoods;
 	}
 
 	@Override
