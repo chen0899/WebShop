@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import com.example.demo.entity.SubCategory;
+import com.example.demo.service.SubCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +24,7 @@ public class CategoryController {
 
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@GetMapping
 	public List<Category> category(){
 		return categoryService.findAll();
@@ -34,7 +36,7 @@ public class CategoryController {
 	}
 	
 	@DeleteMapping
-	public boolean delete(@RequestBody DeleteRequest request){
-		return categoryService.delete(request.getId());
+	public void delete(@RequestBody DeleteRequest request) {
+		categoryService.delete(request.getId());
 	}
 }

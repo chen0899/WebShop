@@ -19,18 +19,19 @@ public class Category {
 	@OneToMany(mappedBy="category")
 	private List<Goods> goods = new ArrayList<Goods>();
 	
-	
+	@OneToMany(mappedBy="category")
+	private List<SubCategory> subCategories = new ArrayList<>();
+
 	private  String nameCategory;
 	
 	public Category () {}
-	
-	
 
-	public Category(String nameCategory) {
+
+	public Category(List<Goods> goods, List<SubCategory> subCategories, String nameCategory) {
+		this.goods = goods;
+		this.subCategories = subCategories;
 		this.nameCategory = nameCategory;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -46,6 +47,22 @@ public class Category {
 
 	public void setNameCategory(String nameCategory) {
 		this.nameCategory = nameCategory;
+	}
+
+	public List<Goods> getGoods() {
+		return goods;
+	}
+
+	public void setGoods(List<Goods> goods) {
+		this.goods = goods;
+	}
+
+	public List<SubCategory> getSubCategories() {
+		return subCategories;
+	}
+
+	public void setSubCategories(List<SubCategory> subCategories) {
+		this.subCategories = subCategories;
 	}
 
 	@Override
