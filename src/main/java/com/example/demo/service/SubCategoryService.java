@@ -9,7 +9,9 @@ public interface SubCategoryService {
 
     SubCategory save(SubCategory subCategory);
 
-    List<SubCategory> findll();
+    SubCategory findByNameSubCategory(String nameSubCategory);
+
+    List<SubCategory> findAll();
 
     SubCategory findOne(int id);
 

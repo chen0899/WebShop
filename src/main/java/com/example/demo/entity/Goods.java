@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,20 +30,25 @@ public class Goods {
 	private String aboutGoods;
 
 	private String photo;
-	
+
+	@JsonIgnore
 	@ManyToOne
 	private Country country;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="diller_goods",joinColumns = @JoinColumn(name="id_goods"),inverseJoinColumns=@JoinColumn(name="id_diller"))
 	private List<Diller> diller = new ArrayList<Diller>();
-	
+
+	@JsonIgnore
 	@ManyToOne
 	private Category category;
 
+	@JsonIgnore
 	@ManyToOne
 	private SubCategory subCategory;
-	
+
+	@JsonIgnore
 	@ManyToOne
 	private Orders orders;
 

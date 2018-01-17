@@ -20,7 +20,7 @@ import sun.misc.BASE64Decoder;
 @Service
 public class GoodsServiceImpl implements GoodsService{
 
-	private final static String PATH = "C://Users//Admin//Desktop//imegesForProject";
+	private final static String PATH = "C://Users//chen0899//Desktop//Logos//imegesForProject";
 
 
 	@Autowired

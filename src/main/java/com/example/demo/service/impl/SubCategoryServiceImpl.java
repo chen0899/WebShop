@@ -21,7 +21,12 @@ public class SubCategoryServiceImpl implements SubCategoryService{
     }
 
     @Override
-    public List<SubCategory> findll() {
+    public SubCategory findByNameSubCategory(String nameSubCategory) {
+        return subCategoryRepository.findByName(nameSubCategory);
+    }
+
+    @Override
+    public List<SubCategory> findAll() {
         return subCategoryRepository.findAll();
     }
 

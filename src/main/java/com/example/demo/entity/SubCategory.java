@@ -17,13 +17,16 @@ public class SubCategory {
     private List<Goods> goods = new ArrayList<Goods>();
 
 
-    @ManyToOne
-    Category category;
+    public SubCategory() {
+    }
 
-    public SubCategory(String name, List<Goods> goods, Category category) {
+    public SubCategory(String name) {
+        this.name = name;
+    }
+
+    public SubCategory(String name, List<Goods> goods) {
         this.name = name;
         this.goods = goods;
-        this.category = category;
     }
 
     public int getId() {
@@ -40,14 +43,6 @@ public class SubCategory {
 
     public void setGoods(List<Goods> goods) {
         this.goods = goods;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public String getName() {
