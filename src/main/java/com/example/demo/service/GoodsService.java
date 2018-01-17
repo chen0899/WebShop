@@ -8,11 +8,18 @@ import com.example.demo.request.SearchingForSizeRequest;
 import com.example.demo.request.SearchingRequest;
 
 public interface GoodsService {
-	
-	Goods save(Goods goods) throws IOException;
-	List<Goods> findAll();
-	Goods findOne(int id);
-	boolean delete(int id);
-	List<Goods> find(SearchingRequest searchingRequest);
 
+    Goods save(Goods goods) throws IOException;
+
+    List<Goods> findByName(String name);
+
+    List<Goods> findAll();
+
+    Goods findOne(int id);
+
+    boolean delete(int id);
+
+    List<Goods> find(SearchingRequest searchingRequest);
+
+    List<Goods> research(String name);
 }

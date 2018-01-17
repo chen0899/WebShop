@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.dto.GoodsDTO;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.entity.Goods;
 import com.example.demo.request.DeleteRequest;
 import com.example.demo.service.GoodsService;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/goods")
@@ -39,6 +42,11 @@ public class GoodsController {
 	@GetMapping
 	public List<Goods> goods(){
 		return goodsService.findAll();
+	}
+
+	@GetMapping("find-all-by/{nameCategory}")
+	public List<Goods>  findGoods(@PathVariable String nameCategory){
+		return goodsService.findAll().stream().filter(goods1 -> goods1.getSubCategory().getName().equalsIgnoreCase(nameCategory)).collect(toList());
 	}
 	
 	@PutMapping
@@ -73,10 +81,11 @@ public class GoodsController {
 		return goodsService.save(goods);
 	}
 
-	@PostMapping("/search")
-	public List<Goods> findGoods(@RequestBody SearchingRequest searchingRequest){
-		return goodsService.find(searchingRequest);
+	@PostMapping("/search/{name}")
+	public List<Goods> research(@PathVariable String name){
+		return goodsService.research(name);
 	}
+
 
 
 

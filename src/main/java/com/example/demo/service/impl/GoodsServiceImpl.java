@@ -17,8 +17,10 @@ import com.example.demo.service.GoodsService;
 import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Decoder;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
-public class GoodsServiceImpl implements GoodsService{
+public class GoodsServiceImpl implements GoodsService {
 
 	private final static String PATH = "C://Users//chen0899//Desktop//Logos//imegesForProject";
 
@@ -26,43 +28,47 @@ public class GoodsServiceImpl implements GoodsService{
 	@Autowired
 	private GoodsRepository goodsRepository;
 
-	
-	
+
 	public Goods save(Goods goods) throws IOException {
-		byte []filecontent;
+		byte[] filecontent;
 		BASE64Decoder decoder = new BASE64Decoder();
 		filecontent = decoder.decodeBuffer(goods.getPhoto().split(",")[1]);
 		String expension = goods.getPhoto().split(",")[0].split("/")[1].split(";")[0];
 		goods.setPhoto(null);
 		goods = goodsRepository.saveAndFlush(goods);
-		Base64MultipartFile multipartFile = new Base64MultipartFile(filecontent,goods.getId()+"."+expension);
+		Base64MultipartFile multipartFile = new Base64MultipartFile(filecontent, goods.getId() + "." + expension);
 		saveFile(multipartFile);
-		goods.setPhoto("/images/"+goods.getId()+"."+expension);
+		goods.setPhoto("/images/" + goods.getId() + "." + expension);
 		return goodsRepository.save(goods);
-		
+
 	}
 
 	private void saveFile(MultipartFile file) throws IOException {
 		File pathToFolder = new File(PATH);
 		createFolder(pathToFolder);
-		File newFile = new File(pathToFolder+"/"+file.getOriginalFilename());
-		writeFile(newFile,file);
+		File newFile = new File(pathToFolder + "/" + file.getOriginalFilename());
+		writeFile(newFile, file);
 
 	}
 
-	private void createFolder(File path){
-		if(!path.exists()){
+	private void createFolder(File path) {
+		if (!path.exists()) {
 			path.mkdirs();
 		}
 	}
 
 	private void writeFile(File file, MultipartFile multipartFile) throws IOException {
-		try(OutputStream fos = new FileOutputStream(file); BufferedOutputStream bos = new BufferedOutputStream(fos)){
-			bos.write(multipartFile.getBytes(),0,multipartFile.getBytes().length);
+		try (OutputStream fos = new FileOutputStream(file); BufferedOutputStream bos = new BufferedOutputStream(fos)) {
+			bos.write(multipartFile.getBytes(), 0, multipartFile.getBytes().length);
 			bos.flush();
-		}catch (IOException e) {
+		} catch (IOException e) {
 
 		}
+	}
+
+	@Override
+	public List<Goods> findByName(String name) {
+		return goodsRepository.findByName(name);
 	}
 
 	public List<Goods> findAll() {
@@ -78,10 +84,14 @@ public class GoodsServiceImpl implements GoodsService{
 		return true;
 	}
 
-	public List<Goods> find (SearchingRequest searchingRequest) {
+	public List<Goods> find(SearchingRequest searchingRequest) {
 		SearchingGoods searchingGoods = new SearchingGoods(searchingRequest);
 		return goodsRepository.findAll(searchingGoods);
 
 	}
 
+	@Override
+	public List<Goods> research(String name) {
+		return findAll().stream().filter(goods -> goods.getName().toLowerCase().contains(name.toLowerCase())).collect(toList());
+	}
 }
